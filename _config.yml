@@ -1,12 +1,12 @@
-title: Parchment
+title: EUING
 author: pro-panda
 subtitle: The life of a frustrated engineer
 
-url: "https://rahul-bothra.github.io"
-baseurl: "/parchment"
+url: "https://EUING.github.io"
+baseurl: "/EUING"
 
 footer_only_homepage: true
-footer_url: "https://github.com/rahul-bothra"
+footer_url: "https://github.com/EUING"
 footer_text: "Theme by rahul-bothra"
 
 profile-picture: assets/profile.png
@@ -20,5 +20,3 @@ sass:
 navbar:
  - name: "About"
    link: "about"
- - name: "Resume"
-   absolute-link: "https://rahul-bothra.github.io/CV.pdf"
