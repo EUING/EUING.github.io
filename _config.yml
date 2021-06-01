@@ -1,9 +1,9 @@
-title: EUING
+title: Parchment
 author: pro-panda
 subtitle: The life of a frustrated engineer
 
 url: "https://EUING.github.io"
-baseurl: "/EUING"
+baseurl: "/parchment"
 
 footer_only_homepage: true
 footer_url: "https://github.com/EUING"
