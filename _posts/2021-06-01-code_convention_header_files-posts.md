@@ -2,7 +2,7 @@
 layout: post
 title: Google C++ Style Guide 1
 subtitle: Header Files 부분 정리.
-tags: [C++]
+tags: [C++, guide]
 ---
 
 -------------
