@@ -88,7 +88,7 @@ tags: [C++, guide]
 - 수정하지 않는 이항 연산자는 비 멤버 함수로 선언할 것.
 - 연산자를 오버로딩 하지 않고 별도의 함수를 선언하지 말 것.
 - std::set와 같이 라이브러리에서 요구하는 연산자를 충족하기 위해 억지로 연산자를 정의하지 말 것.
-- &&, ||, ,(comma), &, "" 연산자를 오버로딩 하지 말 것.
+- &&, \|\|, ,(comma), &, "" 연산자를 오버로딩 하지 말 것.
 - 표준 라이브러리를 포함하여 사용자 정의 리터럴을 도입하지 말것.
 
 ## Access Control
@@ -98,7 +98,7 @@ tags: [C++, guide]
 ## Declaration Order
 - 비슷한 종류끼리 그룹화 하고 public, protected, private 순서로 선언 할 것.
 - 선언 순서
-    1. types(typedef, using, enum, 중첩 구조체 및 클래스
+    1. types(typedef, using, enum, 중첩 구조체 및 클래스)
     2. constants
     3. factory functions
     4. constructors and assignment operators
