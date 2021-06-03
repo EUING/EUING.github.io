@@ -24,6 +24,11 @@ tags: [C++, guide]
     #define FOO_BAR_BAZ_H_
     #endif // FOO_BAR_BAZ_H_
 ~~~
+
+##Include What You Use
+- 헤더 파일이나 .cc file에서 다른 곳에 정의 된 기호를 참조하는 경우 해당 기호를 제공하는 헤더 파일을 include 해야 함.
+- 만약 foo.h에서 bar.h를 include 했더라도 foo.cc에서 bar.h에 내용을 사용하면 foo.cc에도 bar.h를 include 해야 함.
+
 ## Forward Declarations
 - 장점
     - 컴파일 시간을 줄일 수 있음.
