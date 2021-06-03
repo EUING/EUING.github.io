@@ -14,7 +14,8 @@ tags: [C++, guide]
 - 네임 스페이스 작성법
     1. std 네임 스페이스에 아무것도 선언하지 말 것.
 	2. using 지시문을 사용하지 말 것. e.g.) `using namespace std`.
-    3. 주석을 활용해서 명시적으로 네임 스페이스를 종료.
+	3. .cc file에서 쓸 별칭 선언을 클라이언트가 볼 수 있는 헤더 파일에 하지 말 것.
+    4. 주석을 활용해서 명시적으로 네임 스페이스를 종료.
 ~~~C
         // .h file
         namespace mynamespace {
@@ -33,7 +34,7 @@ tags: [C++, guide]
         }
         } // namespace mynamespace
 ~~~
-	4. 함수의 버전 호환을 제외하고는 인라인 네임 스페이스를 사용하지 말 것.
+	5. 함수의 버전 호환을 제외하고는 인라인 네임 스페이스를 사용하지 말 것.
 ~~~C
         namespace foo {
             namespace v1 {
