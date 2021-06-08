@@ -65,7 +65,8 @@ tags: [C++, guide]
 		    - 함수 템플릿 형식 연역은 거의 항상 괜찮음.
 		2. Local variable type deduction
 		    - 지역 변수의 경우, 불 필요한 형식 정보를 제거하거나 코드를 명확하게 하기 위해 형식 영역을 사용할 수 있음.
-~~~C
+			
+            ~~~C
             std::unique_ptr<WidgetWithBellsAndWhistles> widget_ptr =
                 absl::make_unique<WidgetWithBellsAndWhistles>(arg1, arg2);
             absl::flat_hash_map<std::string,
@@ -76,14 +77,16 @@ tags: [C++, guide]
             auto widget_ptr = absl::make_unique<WidgetWithBellsAndWhistles>(arg1, arg2);
             auto it = my_map_.find(key);
             std::array numbers = {4, 8, 15, 16, 23, 42};
-~~~
+            ~~~
+
             - 형식 정보가 중요한 경우 auto를 통해 형식을 연역한 후 명시적으로 형식을 지정하여 사용할 것.
-~~~C
+            ~~~C
             if (auto it = my_map_.find(key); it != my_map_.end()) {
                 WidgetWithBellsAndWhistles& widget = *it->second;
                 // widget 참조 변수로 처리
             }
-~~~
+            ~~~
+
             - 다른 방법으로 비슷한 동작이 되면 decltype(auto)를 사용하지 말 것.
 		3. Return type deduction
 		    - 함수 몸체에 return이 매우 적고 다른 코드가 거의 없는 경우에 형식 연역을 사용할 것.
@@ -153,7 +156,8 @@ tags: [C++, guide]
 	- 주변 범위에서 변수를 사용할 때만 캡처를 사용할 것.
 	- 기존 변수명의 의미를 변경하기 위해 init captures를 사용하지 말 것.
 	- 람다가 현재 범위를 벗어날 수 있는 경우 명시적인 캡처를 선호할 것.
-~~~C
+	
+    ~~~C
     {
     Foo foo;
     ...
@@ -170,7 +174,7 @@ tags: [C++, guide]
     ...
     }
 	// 만약 Frobnicate가 멤버 함수 인 경우 컴파일 에러가 될 것이고, foo를 참조하는 것이 명시적임.
-~~~
+    ~~~
 
 ## Template Metaprogramming
 - 장점
@@ -182,22 +186,22 @@ tags: [C++, guide]
 	
 ## Boost
 - Boost 라이브러리 컬렉션에서 승인된 라이브러리만 사용할 것.
-    1. Call Traits from boost/call_traits.hpp
-    2. Compressed Pair from boost/compressed_pair.hpp
-    3. The Boost Graph Library (BGL) from boost/graph, except serialization (adj_list_serialize.hpp) and parallel/distributed algorithms and data structures (boost/graph/parallel/* and boost/graph/distributed/*).
-    4. Property Map from boost/property_map, except parallel/distributed property maps (boost/property_map/parallel/*).
-    5. Iterator from boost/iterator
-    6. The part of Polygon that deals with Voronoi diagram construction and doesn't depend on the rest of Polygon: boost/polygon/voronoi_builder.hpp, boost/polygon/voronoi_diagram.hpp, and boost/polygon/voronoi_geometry_type.hpp
-    7. Bimap from boost/bimap
-    8. Statistical Distributions and Functions from boost/math/distributions
-    9. Special Functions from boost/math/special_functions
-    10. Root Finding Functions from boost/math/tools
-    11. Multi-index from boost/multi_index
-    12. Heap from boost/heap
-    13. The flat containers from Container: boost/container/flat_map, and boost/container/flat_set
-    14. Intrusive from boost/intrusive.
-    15. The boost/sort library.
-    16. Preprocessor from boost/preprocessor.
+    - Call Traits from boost/call_traits.hpp
+    - Compressed Pair from boost/compressed_pair.hpp
+    - The Boost Graph Library (BGL) from boost/graph, except serialization (adj_list_serialize.hpp) and parallel/distributed algorithms and data structures (boost/graph/parallel/* and boost/graph/distributed/*).
+    - Property Map from boost/property_map, except parallel/distributed property maps (boost/property_map/parallel/*).
+    - Iterator from boost/iterator
+    - The part of Polygon that deals with Voronoi diagram construction and doesn't depend on the rest of Polygon: boost/polygon/voronoi_builder.hpp, boost/polygon/voronoi_diagram.hpp, and boost/polygon/voronoi_geometry_type.hpp
+    - Bimap from boost/bimap
+    - Statistical Distributions and Functions from boost/math/distributions
+    - Special Functions from boost/math/special_functions
+    - Root Finding Functions from boost/math/tools
+    - Multi-index from boost/multi_index
+    - Heap from boost/heap
+    - The flat containers from Container: boost/container/flat_map, and boost/container/flat_set
+    - Intrusive from boost/intrusive.
+    - The boost/sort library.
+    - Preprocessor from boost/preprocessor.
 	
 ## std::hash
 - std::hash는 특수화하기 어렵고, 해시 플러딩 공격으로 인해 보안 취약점이 될 수 있으므로 특수화 하지 말 것.
@@ -231,7 +235,9 @@ tags: [C++, guide]
 - 결론
     - 고객이 사용하지 않는 한 구현 시 입력을 줄이기 위한 별칭 선언을 공용 API에 넣지 말 것.
 	- 공용 API에 네임 스페이스 별칭을 넣지 말 것.
-~~~C
+	- 함수 정의, 클래스의 private 영역, 명시적으로 표시된 내부 네임 스페이스 및 .cc file에서는 구현 편의 목적 별칭 선언 사용 가능.
+	
+    ~~~C
     namespace mynamespace {
     using DataPoint = ::foo::Bar*;
 	// DataPoint는 추후 Bar*에서 다른 내장 형식으로 변경 될 수 있음.
@@ -248,5 +254,4 @@ tags: [C++, guide]
     using ::std::hash; // Bad. 단순히 구현 편의 목적임.
     typedef unordered_set<DataPoint, hash<DataPoint>, DataPointComparator> TimeSeries;
     } // namespace mynamespace
-~~~
-    - 함수 정의, 클래스의 private 영역, 명시적으로 표시된 내부 네임 스페이스 및 .cc file에서는 구현 편의 목적 별칭 선언 사용 가능.
+    ~~~
