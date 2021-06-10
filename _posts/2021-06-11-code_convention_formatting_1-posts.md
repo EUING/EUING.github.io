@@ -43,6 +43,7 @@ tags: [C++, guide]
 	10. 가능하면 모든 매개 변수는 정렬해야 함.
 	11. 기본 들여쓰기는 2 space
 	12. 묶인 매개 변수는 4space로 들여 쓸 것.
+	
 ~~~C
     ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
       DoSomething();

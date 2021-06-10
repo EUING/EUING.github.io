@@ -115,6 +115,7 @@ tags: [C++, guide]
 ## Horizontal Whitespace
 - 줄의 끝에 trailing whitespace를 절대 넣지 말 것.
 1. General
+
 ~~~C
     void f(bool b) {  // 열린 중괄호는 항상 1 space를 가져야 함
       ...
