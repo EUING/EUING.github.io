@@ -115,6 +115,7 @@ tags: [C++, guide]
 ## Horizontal Whitespace
 - 줄의 끝에 trailing whitespace를 절대 넣지 말 것.
 1. General
+
 ~~~C
     void f(bool b) {  // 열린 중괄호는 항상 1 space를 가져야 함
       ...
@@ -132,6 +133,7 @@ tags: [C++, guide]
       ...
 ~~~
 2. Loops and Conditionals
+
 ~~~C
     if (b) {          // 조건문 이후에 1 space 후 열린 중괄호를 작성해야 함
     } else {          // else 이후 1 space
@@ -157,6 +159,7 @@ tags: [C++, guide]
       case 2: break;  // 콜론 이후에 코드가 있을 경우 1 space를 가져야 함
 ~~~
 3. Operators
+
 ~~~C
     // 대입 연산자는 항상 양쪽으로 space를 가져야 함
     x = 0;
@@ -173,6 +176,7 @@ tags: [C++, guide]
       ...
 ~~~
 4. Templates and Casts
+
 ~~~C
     // <> 안에는 띄어쓰지 않음
     std::vector<std::string> x;
