@@ -9,7 +9,7 @@ tags: [C++, guide]
 
 # Formatting
 ## Return Values
-- 표현식을 반활 할 경우와 표현식을 변수에 넣고 반환 할 경우에만 괄호를 사용할 것.
+- 표현식을 반환 할 경우와 표현식을 변수에 넣고 반환 할 경우에만 괄호를 사용할 것.
 ~~~C
     return result;  // 간단한 경우 괄호가 없어야 함.
     // 복잡한 표현식을 더 읽기 쉽게 만드므로 괄호 허용.
@@ -83,7 +83,7 @@ tags: [C++, guide]
 ~~~
 
 ## Constructor Initializer Lists
-- 생성자 초기화 목록은 모두 한 줄에 있거나 다음 줄에 4 space 들여 쓰기 작성할 수 있음.
+- 생성자 초기화 목록은 모두 한 줄에 있거나 다음 줄에 4 space 들여 쓰기로 작성할 수 있음.
 ~~~C
     // 생성자 초기화 목록이 한 줄로 구성된 경우
     MyClass::MyClass(int var) : some_var_(var) {
@@ -115,7 +115,6 @@ tags: [C++, guide]
 ## Horizontal Whitespace
 - 줄의 끝에 trailing whitespace를 절대 넣지 말 것.
 1. General
-
 ~~~C
     void f(bool b) {  // 열린 중괄호는 항상 1 space를 가져야 함
       ...
@@ -144,7 +143,7 @@ tags: [C++, guide]
     switch ( i ) {
     if ( test ) {
     for ( int i = 0; i < 5; ++i ) {
-    // for문은 세미콜론 후 항상 1 space를 가지고 드믈게 세미클론 이전에 띄어쓰기를 가질 수 있음
+    // for문은 세미콜론 후 항상 1 space를 가지고 드물게 세미클론 이전에 띄어쓰기를 가질 수 있음
     for ( ; i < 5 ; ++i) {
       ...
 
@@ -162,7 +161,7 @@ tags: [C++, guide]
     // 대입 연산자는 항상 양쪽으로 space를 가져야 함
     x = 0;
 
-    // 나머지 이항 연산자는 보통 양쪽 space를 가지지만 없어도 무방하고 소괄호는 띄어쓰지 않음
+    // 나머지 이항 연산자는 보통 양쪽 space를 가지지만, 없어도 무방하고 소괄호는 띄어쓰지 않음
     v = w * x + y / z;
     v = w*x + y/z;
     v = w * (x + z);

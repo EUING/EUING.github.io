@@ -27,12 +27,12 @@ tags: [C++, guide]
 - std::initialzer_list로 생성자를 호출 할 경우 explicit 키워드 생략 가능. e.g.) `MyType m = {1, 2}`.
 
 ## Copyable and Movable Types
-- 클래스가 복사 가능, 이동 전용, 복사 및 이동 가능 인지 명확해야 함.
+- 클래스가 복사 가능, 이동 전용, 복사 및 이동 가능한지 명확해야 함.
 - 인터페이스는 명시적으로 복사, 이동 연산자를 선언 또는 삭제를 해야 함.
-- private 영역이 없는 클래스는 복사, 이동 가능 여부가 public 멤버 변수에 의해 정해 질 수 있고 연산자 선언을 생략 할 수 있음.
-- 복사 혹은 이동에 대해 생성자 혹은 연산자를 선언하거나 제거 했으면 나머지 작업도 선언 혹은 제거 해야 함.
-- 복사 가능한 클래스에 대한 이동 연산은 복사보다 훨씬 더 효율적이지 않는 한 정의하지 말 것.
-- 상속이 예정된 클래스에 대해서 객체 슬라이싱의 위험으로 연산자 및 생성자를 제공하지 않는 것이 좋음.
+- private 영역이 없는 클래스는 복사, 이동 가능 여부가 public 멤버 변수에 의해 정해질 수 있으며 연산자 선언을 생략 할 수 있음.
+- 복사 혹은 이동에 대해 생성자 혹은 연산자를 선언하거나 제거했으면 나머지 작업도 선언 혹은 제거해야 함.
+- 복사 가능한 클래스에 대해 이동 연산이 복사보다 훨씬 더 효율적이지 않는 한 정의하지 말 것.
+- 상속이 예정된 클래스에 대해서 객체 슬라이싱의 위험으로 인해 연산자 및 생성자를 제공하지 않는 것이 좋음.
 - 기본 클래스를 복사 할 수 있어야 하는 경우 public 가상 함수를 제공하고 파생 클래스에서 이를 구현하기 위해 protected 복사 생성자를 제공할 것.
 ~~~C
     class Copyable {
@@ -49,7 +49,7 @@ tags: [C++, guide]
         MoveOnly(MoveOnly&& other) = default;
         MoveOnly& operator=(MoveOnly&& other) = default;
 
-        // 복사 연산자는 위에 선언으로 인해 암시적으로 삭제 되었지만 원하면 명시적으로 삭제 해도 됨.
+        // 복사 연산자는 위에 선언으로 인해 암시적으로 삭제 되었지만 원하면 명시적으로 삭제해도 됨.
         MoveOnly(const MoveOnly&) = delete;
         MoveOnly& operator=(const MoveOnly&) = delete;
     };
@@ -60,7 +60,7 @@ tags: [C++, guide]
         NotCopyableOrMovable(const NotCopyableOrMovable&) = delete;
         NotCopyableOrMovable& operator=(const NotCopyableOrMovable&) = delete;
 
-        // 이동 연산자는 위에 선언으로 인해 암시적으로 삭제 되었지만 원하면 명시적으로 삭제 해도 됨.
+        // 이동 연산자는 위에 선언으로 인해 암시적으로 삭제 되었지만 원하면 명시적으로 삭제해도 됨.
         NotCopyableOrMovable(NotCopyableOrMovable&&) = delete;
         NotCopyableOrMovable& operator=(NotCopyableOrMovable&&) = delete;
     };
@@ -75,7 +75,7 @@ tags: [C++, guide]
 - first, second, std::get<X>으로 pair, tuple의 인자를 접근하므로 해당 데이터가 무엇인지 명확하지 않음.
 
 ## Inheritance
-- 포함 관계가 대체로 상속보다 적절하고 상속을 사용한다면 public으로 선언할 것.
+- 포함 관계가 대체로 상속보다 적절하고, 상속을 사용한다면 public으로 선언할 것.
 - 구현 상속을 남용하지 말고 상속의 사례를 is a kind of 관계로 제한할 것.
 - 하위 클래스에서 접근하는 멤버 함수는 protected로 선언하고 멤버 변수는 private로 선언할 것.
 - override, final 지정자를 명시적으로 사용하고 재정의 할 때 virtual 지정자를 붙이지 말 것.

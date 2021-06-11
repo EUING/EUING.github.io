@@ -29,7 +29,7 @@ tags: [C++, guide]
 - 함수 오버라이딩의 경우 함수의 설명을 반복하기 보다는 오버라이딩의 세부 사항에 대한 주석을 작성할 것.
 - 생성자와 소멸자에 대한 설명은 일반적으로 생략하지만 생성자의 동작이 복잡하면 주석을 활용해서 설명할 것.
 - 함수 선언에서 주석에 언급할 항목
-    1. input과 output에 대한 설명이 필요하고 함수 인자의 경우 \'argument\'.
+    1. input과 output에 대한 설명이 필요하고 함수 인자의 경우 \'argument\'로 작성할 것.
 	2. 객체가 멤버 함수의 종료 이후 참조 인수에 대한 해제 여부.
 	3. 함수를 호출한 쪽에서 메모리 해제 여부.
 	4. 인자가 nullptr이 될 수 있는 지 여부.
@@ -87,8 +87,8 @@ if (mmap_budget >= data_size_ && !MmapData(mmap_chunk_bytes, mlock))
     2. 인자가 boolean인 경우 enum 인자로 바꿀 경우 인수가 자연스럽게 설명 될 수 있음.
     3. 여러 옵션이 있는 함수의 경우 모든 옵션을 보유한 클래스나 구조체를 정의하고 해당 객체를 전달할 것.
     4. 마지막 수단으로 호출하는 쪽에서 주석으로 인자를 설명할 것.
+	
 ~~~C
-    // What are these arguments?
     const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
 	
     ProductOptions options;

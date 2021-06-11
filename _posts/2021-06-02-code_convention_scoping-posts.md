@@ -9,7 +9,7 @@ tags: [C++, guide]
 
 # Scoping
 ## Namespaces
-- 네임 스페이스는 프로젝트 이름 및 경로에 따라 고유해야하며, 코드를 네임 스페이스에 배치해야 함.
+- 네임 스페이스는 프로젝트 이름 및 경로에 따라 고유해야하며, 대부분의 경우 코드를 네임 스페이스에 배치해야 함.
 
 - 네임 스페이스 작성법
     1. std 네임 스페이스에 아무것도 선언하지 말 것.
@@ -37,17 +37,17 @@ tags: [C++, guide]
 	5. 함수의 버전 호환을 제외하고는 인라인 네임 스페이스를 사용하지 말 것.
 ~~~C
         namespace foo {
-            namespace v1 {
-                void bar() {
-                    std::cout << "v1";
-                }
-            }
+        namespace v1 {
+        void bar() {
+            std::cout << "v1";
+        }
+        }
 		
-            inline namespace v2 {
-                void bar() {
-                    std::cout << "v2";
-                }
-            }
+        inline namespace v2 {
+        void bar() {
+            std::cout << "v2";
+        }
+        }
         }
 	
         // foo::bar() 호출 시 v2를 출력
@@ -56,7 +56,7 @@ tags: [C++, guide]
 	
 ## Internal Linkage
 - .cc file의 내용을 외부에서 참조할 필요가 없는 경우 익명 네임 스페이스이나 static을 활용할 것.
-- 다른 .cc file에서 같은 이름을 사용하더라도 완전하게 독립적임.
+- 이 경우 다른 .cc file에서 같은 이름을 사용하더라도 완전하게 독립적임.
 ~~~C
     namespace {
     ...
@@ -82,7 +82,7 @@ tags: [C++, guide]
 - Data segment에 할당되는 변수는 trivially destructible하지 않으면 금지.
 - 함수의 static 변수는 동적 초기화를 사용할 수 있지만 정적 클래스 변수 및 네임 스페이스의 변수는 동적 초기화를 권장하지 않음.
 - constexpr은 trivially destructible를 보장함.
-- 동적 초기화를 사용하거나 trivially destructible하지 않은 변수는 해당 변수가 유효하지 않을 때 접근 할 수 있음.
+- 동적 초기화를 사용하거나 trivially destructible하지 않은 변수는 해당 변수가 유효하지 않을 때 접근 될 수 있음.
 - 소멸자 결론
     1. trivially destructible 객체.
 	2. 기본 자료형, 포인터, 배열, constexpr로 선언된 변수
@@ -147,9 +147,9 @@ tags: [C++, guide]
 	6. 다른 방법이 없으면 객체를 동적으로 생성하고 함수 정적 포인터 혹은 참조로 받은 후 삭제하지 않을 것. e.g.) `static const auto& impl = *new T(args...);`.
 	
 ## thread_local Variables
-- C++11 부터는 threal_local 지정자를 사용하여 변수를 선언할 수 있음. e.g.) `thread_local Foo foo = ...;`.
+- C++11 부터는 thread_local 지정자를 사용하여 변수를 선언할 수 있음. e.g.) `thread_local Foo foo = ...;`.
 - thread_local 변수는 Data race에 안전하며 concurrent programming에 효과적임.
 - thread_local 변수는 다른 스레드가 접근할 때 실제로 다른 객체에 접근함.
 - thread_local 변수는 static 변수와 성질이 유사함.
-- static 변수와 비슷하게 함수 내부 변수는 순서와 상관없지만 다른 경우는 초기화 순서 문제가 발생.
-- 사실상 전역 변수 이므로 스레드 안전성을 제외하고 전역 변수의 모든 단점을 가지고 있음.
+- static 변수와 비슷하게 함수 내부 변수는 순서와 상관없지만 함수 외부에서는 초기화 순서 문제가 발생.
+- 사실상 전역 변수이므로 스레드 안전성을 제외하고 전역 변수의 모든 단점을 가지고 있음.

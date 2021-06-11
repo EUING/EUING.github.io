@@ -29,16 +29,16 @@ tags: [C++, guide]
 ~~~
     3. Function return type deduction
 	    - auto, decltype(auto)는 함수의 return type으로 사용할 수 있음.
-		- 람다 표현식 또한, 같은 방법으로 형식이 연역되지만 보통 명시적으로 auto를 사용하지 않음.
+		- 람다 표현식도 같은 방법으로 형식이 연역되지만 보통 명시적으로 auto를 사용하지 않음.
             `auto f() { return 0; } // return type은 int`
     4. Generic lambdas
-	    - 람다 표현식은 하나 이상의 매개 변수에 대해 auto를 사용할 수 있으며 함수 템플릿으로 동작하게 됨.
+	    - 람다 표현식은 하나 이상의 매개 변수에 대해 auto를 사용할 수 있으며 함수 템플릿처럼 동작하게 됨.
             `std::sort(vec.begin(), vec.end(), [](auto lhs, auto rhs) { return lhs > rhs; });`
     5. Lambda init captures
 	    - 람다 캡처에서 명시적인 지역 변수 초기화가 일어날 때 형식을 연역함.
             `[x = 42, y = "foo"]() { ... } // x는 int, y는 const char*`
     6. Structured bindings
-	    - tuple, struct 등 structured binding declaration을 선언할 때 형식을 연역함.
+	    - tuple, struct 등 structured binding을 선언할 때 형식을 연역함.
 ~~~C
             auto [iter, success] = my_map.insert({key, value});
             if(!succcess) {
@@ -53,7 +53,7 @@ tags: [C++, guide]
 	- 의도하지 않은 복사 또는 형 변환을 방지하기 위해 형식을 연역하는 것이 더 안전할 수 있음.
 - 단점
     - auto의 형식 연역을 숙지해야만 복사가 일어날 지 안 일어날 지 알 수있음.
-    - 인터페이스 일부에 auto를 사용하면 의도한 것 보다 훨씬 큰 API의 변경이 일어날 수 있음.
+    - 인터페이스 일부에 auto를 사용하면 의도한 것보다 훨씬 큰 API의 변경이 일어날 수 있음.
     - C++ 코드는 형식을 명시적으로 작성하는 것이 훨씬 명확함.
 ~~~C
         auto foo = x.add_foo(); 
@@ -97,7 +97,7 @@ tags: [C++, guide]
 		5. Lambda init captures
 		    - 람다 규칙을 따름
 		6. Structured bindings
-		    - 다른 형식 연역과 다르게 structured binding declaration은 추가 정보를 제공 할 수 있음.
+		    - 다른 형식 연역과 다르게 structured binding 선언은 추가 정보를 제공할 수 있음.
             - 구조체 바인딩의 경우 field name과 달라질 수도 있으므로 주석으로 field name을 나타내는 것이 좋음. 
 			    e.g.) `auto [/ * field_name1 = * / bound_name1, / * field_name2 = * / bound_name2] = ...`
 
@@ -204,8 +204,8 @@ tags: [C++, guide]
     - Preprocessor from boost/preprocessor.
 	
 ## std::hash
-- std::hash는 특수화하기 어렵고, 해시 플러딩 공격으로 인해 보안 취약점이 될 수 있으므로 특수화 하지 말 것.
-- 만약 std::hash를 지원하지 않는 key를 사용할 경우 lagacy has container를 고려 할 것. e.g.) hash_map
+- std::hash는 특수화하기 어렵고 해시 플러딩 공격으로 인해 보안 취약점이 될 수 있으므로 특수화 하지 말 것.
+- 만약 std::hash를 지원하지 않는 key를 사용할 경우 lagacy hash container를 고려 할 것. e.g.) hash_map
 
 ## Other C++ Features
 - 다음 언급되는 C++ 기능은 사용하지 말 것.
@@ -215,13 +215,13 @@ tags: [C++, guide]
 	
 ## Nonstandard Extensions
 - 장점
-    - 비표준 확장은 표쥰 C++에 없는 유용한 기능을 제공할 수 있음.
+    - 비표준 확장은 표준 C++에 없는 유용한 기능을 제공할 수 있음.
 	- 컴파일러에 대한 중요한 성능 가이드는 비표준 확장을 통해서만 지정할 수 있음.
 - 단점
     - 비표준 확장은 일부 컴파일러에서는 작동하지 않으므로 코드의 이식성이 줄어듬.
 	- 모든 컴파일러에서 지원된다고 하더라도 컴파일러 간 동작 차이가 있을 수 있음.
 - 결론
-    -C++에 대한 비표쥰 확장은 별도로 지정하지 않는 한 사용하지 말 것.
+    - C++에 대한 비표준 확장은 별도로 지정하지 않는 한 사용하지 말 것.
 	
 ## Aliases
 - 장점
@@ -235,7 +235,7 @@ tags: [C++, guide]
 - 결론
     - 고객이 사용하지 않는 한 구현 시 입력을 줄이기 위한 별칭 선언을 공용 API에 넣지 말 것.
 	- 공용 API에 네임 스페이스 별칭을 넣지 말 것.
-	- 함수 정의, 클래스의 private 영역, 명시적으로 표시된 내부 네임 스페이스 및 .cc file에서는 구현 편의 목적 별칭 선언 사용 가능.
+	- 함수 정의, 클래스의 private 영역, 명시적으로 표시된 내부 네임 스페이스 및 .cc file에서는 구현 편의 목적의 별칭 선언을 사용 가능.
 	
     ~~~C
     namespace mynamespace {

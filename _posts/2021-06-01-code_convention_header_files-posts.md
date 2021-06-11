@@ -9,7 +9,7 @@ tags: [C++, guide]
 
 # Header Files
 ## Header Files
-- *small .cc files, main* 함수를 제외한 모든 .cc 파일 대응하는 헤더 파일이 있어야 함.
+- *small .cc files, main* 함수를 제외한 모든 .cc 파일에는 대응하는 헤더 파일이 있어야 함.
 - 헤더 파일로 인해 코드의 가독성, 크기 및 성능이 달라질 수 있음.
 
 ## Self-contained Headers
@@ -25,7 +25,7 @@ tags: [C++, guide]
     #endif // FOO_BAR_BAZ_H_
 ~~~
 
-##Include What You Use
+## Include What You Use
 - 헤더 파일이나 .cc file에서 다른 곳에 정의 된 기호를 참조하는 경우 해당 기호를 제공하는 헤더 파일을 include 해야 함.
 - 만약 foo.h에서 bar.h를 include 했더라도 foo.cc에서 bar.h에 내용을 사용하면 foo.cc에도 bar.h를 include 해야 함.
 
@@ -59,14 +59,14 @@ tags: [C++, guide]
     - 좀 더 효율적인 목적 코드를 만들 수 있음.
 - 단점
     - 인라인을 남용하면 프로그램이 오히려 느려질 수 있음.
-	- 작은 함수에 대해서는 코드 크기가 더 줄어들지만 비교적 큰 함수에 대해서는 코드 크기가 늘어남.
+	- 작은 함수에 대해서는 코드 크기가 더 줄어들지만 비교적 큰 함수에 대해서는 코드 크기가 다 늘어남.
 	- 최신 프로세서는 명령 캐시를 사용하기 때문에 더 작은 코드를 더 빠르게 동작시킴.
 - 결론 
     - 10라인 이상의 함수에 대해서는 인라인을 지양할 것.
     - 반복문 및 switch를 사용하는 함수를 인라인 하는 것은 효율적이지 않음.
 	
 ## Names and Order of Includes
-- 헤더 파일를 include 하는 순서:
+- 헤더 파일를 include 하는 순서
     1. 관련 헤더
 	2. C 시스템 헤더
 	3. C++ 표준 라이브러리 헤더
@@ -74,21 +74,21 @@ tags: [C++, guide]
 	5. 프로젝트 헤더
 - 프로젝트의 모든 헤더 파일은 상대 경로를 사용하지 않고 프로젝트 소스 디렉토리의 하위 항목으로 나열되어야 함.
 ~~~C
-    #include "base / logging.h"  // google-awesome-project/src/base/logging.h
+    #include "base/logging.h"  // google-awesome-project/src/base/logging.h
 ~~~
 - 비어 있지 않은 각 그룹은 하나의 빈 줄로 구분.
 - 각 그룹은 알파벳 순으로 정렬해야 함.
+- 조건부 #include의 경우는 마지막에 넣어도 무방.
 ~~~C
-    #include "foo / server / fooserver.h" // 관련 헤더
+    #include "foo/server/fooserver.h" // 관련 헤더
 
-    #include <sys / types.h> // C 시스템 헤더
+    #include <sys/types.h> // C 시스템 헤더
     #include <unistd.h> 
 
     #include <string> // C++ 표준 라이브러리 헤더
     #include <vector> 
 
-    #include "base / basictypes.h"  //  프로젝트 헤더
-    #include "base /commandlineflags.h " 
-    #include "foo / server / bar.h "
+    #include "base/basictypes.h"  //  프로젝트 헤더
+    #include "base/commandlineflags.h " 
+    #include "foo/server/bar.h "
 ~~~
-- 조건부 #include의 경우는 마지막에 넣어도 무방.
